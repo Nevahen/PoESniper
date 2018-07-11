@@ -17,7 +17,7 @@ export class SearchItem {
     this.league = data.league || "standard";
 
     if (data.active === undefined) {
-      this.active = true;
+      this.active = false;
     } else {
       this.active = data.active;
     }

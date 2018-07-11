@@ -44,13 +44,6 @@ let d = new SearchItem({
   active: false
 });
 
-searchManager.addSearchItem(a);
-searchManager.addSearchItem(b);
-searchManager.addSearchItem(c);
-searchManager.addSearchItem(d);
-
-console.log(searchManager.getSearchItems());
-
 let mainWindow;
 const winURL =
   process.env.NODE_ENV === "development"
@@ -103,6 +96,14 @@ app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
     app.quit();
   }
+});
+
+ipcMain.on("newSearch", (event, data) => {
+  let searchItem = new SearchItem(data);
+  searchItem.league = "Incursion";
+  searchItem.active = false;
+  searchManager.addSearchItem(searchItem);
+  event.sender.send("searchList", searchManager.getSearchItems());
 });
 
 app.on("activate", () => {

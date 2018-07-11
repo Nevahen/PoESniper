@@ -31,8 +31,15 @@ export default {
       e.stopPropagation();
     },
     newSearch: function() {
-      console.log(this.searchItem);
-      alert(this.searchItem);
+      if (this.searchItem.term && this.searchItem.name) {
+        this.sendSearchToMain();
+        this.$emit("close");
+      } else {
+        alert("woops");
+      }
+    },
+    sendSearchToMain: function() {
+      this.$electron.ipcRenderer.send("newSearch", this.searchItem);
     }
   },
   data() {
@@ -43,7 +50,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .modal-bg {
   width: 100vw;
   height: 100vh;
