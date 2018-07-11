@@ -4,7 +4,7 @@
       <div class="row draggable topbar">PoESniper</div>
     </div>
 
-    <div class="container-fluid" style="height:calc(100% - 30px)">
+    <div class="container-fluid" style="height:calc(100% - 30px);position:absolute;top:30px;">
     <router-view></router-view>
     </div>
   </div>
@@ -31,7 +31,9 @@ export default {
 }
 
 .bg-topbar {
-  background: #111;
+  position: absolute;
+  background: black;
+  z-index: 9999;
 }
 .topbar {
   padding: 3px;

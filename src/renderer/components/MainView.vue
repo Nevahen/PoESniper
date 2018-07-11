@@ -14,8 +14,10 @@
                    <search-list></search-list>
             </div>
 
-            <div class="row bottom w-100"><button class="btn-lg w-100">New Search</button></div>
+            <div class="row bottom w-100"><button @click="showModal = true" class="btn-lg w-100">New Search</button></div>
         </div>
+
+    <new-search-modal v-if="showModal" @close="showModal = false"></new-search-modal>
     </div>
 
 
@@ -24,13 +26,20 @@
 <script>
 import SearchList from "./SearchList";
 import ItemList from "./ItemList";
+import NewSearchModal from "./NewSearchModal";
 
 export default {
   name: "mainview",
   methods: {},
   components: {
     SearchList,
-    ItemList
+    ItemList,
+    NewSearchModal
+  },
+  data() {
+    return {
+      showModal: false
+    };
   }
 };
 </script>
